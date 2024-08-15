@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class VdjOlnColectionMnogoobrRelisSpringDemoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(VdjOlnColectionMnogoobrRelisSpringDemoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(VdjOlnColectionMnogoobrRelisSpringDemoApplication.class, args);
+    }
 
 }
