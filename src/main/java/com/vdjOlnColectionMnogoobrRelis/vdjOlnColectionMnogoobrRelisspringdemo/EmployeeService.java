@@ -1,5 +1,6 @@
 package com.vdjOlnColectionMnogoobrRelis.vdjOlnColectionMnogoobrRelisspringdemo;
 
+import org.apache.catalina.valves.HealthCheckValve;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -11,8 +12,8 @@ public class EmployeeService {
     public final int maxNumber = 5;
     public Map<String, Employee> employees = new HashMap<>(Map.of());
 
-    public Set<Map.Entry<String, Employee>> employAdd(String name, String secondName) {
-        Employee employee = new Employee(name, secondName);
+    public Set<Map.Entry<String, Employee>> employAdd(String name, String secondName, int department, int salary) {
+        Employee employee = new Employee(name, secondName, department, salary);
         if (maxNumber > employees.size()) {
             if (employees.containsValue(employee)) {
                 throw new EmployeeAlreadyAddedException("EmployeeAlreadyAddedException");
@@ -25,8 +26,8 @@ public class EmployeeService {
         }
     }
 
-    public Set<Map.Entry<String, Employee>> employRem(String name, String secondName) {
-        Employee employee = new Employee(name, secondName);
+    public Set<Map.Entry<String, Employee>> employRem(String name, String secondName, int department, int salary) {
+        Employee employee = new Employee(name, secondName, department, salary);
         if (employees.containsValue(employee)) {
             employees.remove((String.valueOf(name.charAt(0)) + String.valueOf(secondName.charAt(0))), employee);
             return employees.entrySet();
@@ -35,12 +36,18 @@ public class EmployeeService {
         }
     }
 
-    public Employee employFind(String name, String secondName) {
-        Employee employee = new Employee(name, secondName);
+    public Employee employFind(String name, String secondName, int department, int salary) {
+        Employee employee = new Employee(name, secondName, department, salary);
         if (employees.containsValue(employee) && employees.containsKey(String.valueOf(name.charAt(0)) + String.valueOf(secondName.charAt(0)))) {
             return employees.get(String.valueOf(name.charAt(0)) + String.valueOf(secondName.charAt(0)));
         } else {
             throw new EmployeeNotFoundException();
         }
     }
+
+    public Employee allEmployees(){
+        for(Employee employee:employees.get()){
+
+    }
+
 }

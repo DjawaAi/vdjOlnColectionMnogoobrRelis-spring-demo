@@ -18,18 +18,21 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/add")
-    public Set<Map.Entry<String, Employee>> employAdd(@RequestParam(value = "firstName", required = false) String name, @RequestParam(value = "lastName", required = false) String secondName) {
-        return employeeService.employAdd(name, secondName);
+    public Set<Map.Entry<String, Employee>> employAdd(@RequestParam(value = "firstName", required = false) String name, @RequestParam(value = "lastName", required = false) String secondName,
+                                                      @RequestParam int department, @RequestParam int salary) {
+        return employeeService.employAdd(name, secondName, department, salary);
     }
 
 
     @GetMapping(path = "/remove")
-    public Set<Map.Entry<String, Employee>> employRem(@RequestParam(value = "firstName", required = false) String name, @RequestParam(value = "lastName", required = false) String secondName) {
-        return employeeService.employRem(name, secondName);
+    public Set<Map.Entry<String, Employee>> employRem(@RequestParam(value = "firstName", required = false) String name, @RequestParam(value = "lastName", required = false) String secondName,
+                                                      @RequestParam int department, @RequestParam int salary) {
+        return employeeService.employRem(name, secondName, department, salary);
     }
 
     @GetMapping(path = "/find")
-    public Employee employFind(@RequestParam(value = "firstName", required = false) String name, @RequestParam(value = "lastName", required = false) String secondName) {
-        return employeeService.employFind(name, secondName);
+    public Employee employFind(@RequestParam(value = "firstName", required = false) String name, @RequestParam(value = "lastName", required = false) String secondName,
+                               @RequestParam int department, @RequestParam int salary) {
+        return employeeService.employFind(name, secondName, department, salary);
     }
 }
