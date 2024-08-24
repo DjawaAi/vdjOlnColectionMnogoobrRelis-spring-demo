@@ -1,6 +1,5 @@
 package com.vdjOlnColectionMnogoobrRelis.vdjOlnColectionMnogoobrRelisspringdemo;
 
-import org.apache.catalina.valves.HealthCheckValve;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -9,7 +8,7 @@ import java.util.Set;
 
 @Service
 public class EmployeeService {
-    public final int maxNumber = 5;
+    public final int maxNumber = 7;
     public Map<String, Employee> employees = new HashMap<>(Map.of());
 
     public Set<Map.Entry<String, Employee>> employAdd(String name, String secondName, int department, int salary) {
@@ -45,9 +44,7 @@ public class EmployeeService {
         }
     }
 
-    public Employee allEmployees(){
-        for(Employee employee:employees.get()){
-
+    public Set<Map.Entry<String, Employee>> allEmployees() {
+        return employees.entrySet();
     }
-
 }

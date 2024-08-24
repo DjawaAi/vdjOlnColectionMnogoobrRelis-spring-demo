@@ -6,7 +6,7 @@ public class Employee {
     private final String name;
     private final String secondName;
     private final int department;
-    private final int
+    private final int salary;
 
     public Employee(String name, String secondName, int department, int salary) {
         this.name = name;
@@ -48,5 +48,6 @@ public class Employee {
     public String toString() {
         return "Employee{" + "name='" + name + '\'' + ", secondName='" + secondName + '\'' + ", department=" + department + ", salary=" + salary + '}';
     }
+
 }
 

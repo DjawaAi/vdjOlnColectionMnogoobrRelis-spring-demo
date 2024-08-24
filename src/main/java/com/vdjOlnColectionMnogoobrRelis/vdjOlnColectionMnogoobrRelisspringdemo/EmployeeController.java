@@ -18,8 +18,10 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/add")
-    public Set<Map.Entry<String, Employee>> employAdd(@RequestParam(value = "firstName", required = false) String name, @RequestParam(value = "lastName", required = false) String secondName,
-                                                      @RequestParam int department, @RequestParam int salary) {
+    public Set<Map.Entry<String, Employee>> employAdd(@RequestParam(value = "firstName", required = false) String name,
+                                                      @RequestParam(value = "lastName", required = false) String secondName,
+                                                      @RequestParam int department,
+                                                      @RequestParam int salary) {
         return employeeService.employAdd(name, secondName, department, salary);
     }
 
@@ -34,5 +36,10 @@ public class EmployeeController {
     public Employee employFind(@RequestParam(value = "firstName", required = false) String name, @RequestParam(value = "lastName", required = false) String secondName,
                                @RequestParam int department, @RequestParam int salary) {
         return employeeService.employFind(name, secondName, department, salary);
+    }
+
+    @GetMapping(path = "/all")
+    public Set<Map.Entry<String, Employee>> allEmployees() {
+        return employeeService.allEmployees();
     }
 }
