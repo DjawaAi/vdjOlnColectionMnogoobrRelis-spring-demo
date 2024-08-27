@@ -12,11 +12,11 @@ public class EmployeeService {
     public final int maxNumber = 7;
     public Map<String, Employee> employees = new HashMap<>(Map.of());
 
-    public void checkWords(String name, String secondName, int department, int salary){
+    public Set<Map.Entry<String, Employee>> checkWords(String name, String secondName, int department, int salary) throws BadRequestException {
         if (StringUtils.isAlpha(name)&&StringUtils.isAlpha(secondName)){
-            StringUtils.capitalize(name);
-            StringUtils.capitalize(secondName);
-            employAdd(name, secondName, department, salary);
+//            StringUtils.capitalize(name);
+//            StringUtils.capitalize(secondName);
+           return employAdd(StringUtils.capitalize(name), StringUtils.capitalize(secondName), department, salary);
         } else {
             throw new BadRequestException("Есть не только буквы");}
     }
