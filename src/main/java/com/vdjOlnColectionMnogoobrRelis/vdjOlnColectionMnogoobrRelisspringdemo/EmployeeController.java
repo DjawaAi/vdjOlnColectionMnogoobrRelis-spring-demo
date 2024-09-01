@@ -17,6 +17,15 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
+    @GetMapping(path = "/check")
+    public Set<Map.Entry<String, Employee>> checkWords(@RequestParam(value = "firstName", required = false) String name,
+                                                       @RequestParam(value = "lastName", required = false) String secondName,
+                                                       @RequestParam int department,
+                                                       @RequestParam int salary) throws BadRequestException {
+        return employeeService.checkWords(name, secondName, department, salary);
+    }
+
+
     @GetMapping(path = "/add")
     public Set<Map.Entry<String, Employee>> employAdd(@RequestParam(value = "firstName", required = false) String name,
                                                       @RequestParam(value = "lastName", required = false) String secondName,

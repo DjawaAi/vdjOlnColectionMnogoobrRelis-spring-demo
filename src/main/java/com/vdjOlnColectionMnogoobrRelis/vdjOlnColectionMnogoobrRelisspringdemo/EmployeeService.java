@@ -1,5 +1,6 @@
 package com.vdjOlnColectionMnogoobrRelis.vdjOlnColectionMnogoobrRelisspringdemo;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -10,6 +11,15 @@ import java.util.Set;
 public class EmployeeService {
     public final int maxNumber = 7;
     public Map<String, Employee> employees = new HashMap<>(Map.of());
+
+    public Set<Map.Entry<String, Employee>> checkWords(String name, String secondName, int department, int salary) throws BadRequestException {
+        if (StringUtils.isAlpha(name)&&StringUtils.isAlpha(secondName)){
+//            StringUtils.capitalize(name);
+//            StringUtils.capitalize(secondName);
+           return employAdd(StringUtils.capitalize(name), StringUtils.capitalize(secondName), department, salary);
+        } else {
+            throw new BadRequestException("Есть не только буквы");}
+    }
 
     public Set<Map.Entry<String, Employee>> employAdd(String name, String secondName, int department, int salary) {
         Employee employee = new Employee(name, secondName, department, salary);
