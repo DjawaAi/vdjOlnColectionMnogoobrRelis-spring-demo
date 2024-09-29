@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.result.StatusResultMatchersExtensionsKt.isEqualTo;
 
 class EmployeeServiceTest {
 
@@ -134,7 +133,7 @@ class EmployeeServiceTest {
         assertFalse(containsValue1);
         assertFalse(containsKey1);
 
-        if (employeeService.employees.containsValue(e) && employeeService.employees.containsKey(dF.getName().charAt(0) + String.valueOf(dF.getSecondName().charAt(0)))){
+        if (employeeService.employees.containsValue(e) && employeeService.employees.containsKey(dF.getName().charAt(0) + String.valueOf(dF.getSecondName().charAt(0)))) {
             assertTrue(employeeService.employees.containsValue(e));
         } else {
             assertFalse((String.valueOf(dF.getName().charAt(0)) + String.valueOf(dF.getSecondName().charAt(0))).equals("AZ"));

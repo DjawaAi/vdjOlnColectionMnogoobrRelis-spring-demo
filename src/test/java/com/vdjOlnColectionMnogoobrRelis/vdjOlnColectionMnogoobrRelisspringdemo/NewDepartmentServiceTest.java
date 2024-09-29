@@ -60,13 +60,55 @@ class NewDepartmentServiceTest {
 
     @Test
     void identifyEmployeeWithMaxZP() {
+        int depId = 1;
+
+        when(employeeService.allEmployees()).thenReturn(mockEmplSetEnt);
+
+        Map.Entry<String, Employee> result = newDepartmentService.identifyEmployeeWithMaxZP(depId);
+
+        assertEquals(785, result.getValue().getSalary());
+        assertEquals("FE", result.getKey());
+        assertEquals("Feder", result.getValue().getName());
+
+        when(employeeService.allEmployees()).thenReturn(null);
+
+        assertThrows(NullPointerException.class, () -> newDepartmentService.identifyEmployeeWithMaxZP(depId));
     }
 
     @Test
     void identifyEmployeeWithMinZP() {
+        int depId = 1;
+
+        when(employeeService.allEmployees()).thenReturn(mockEmplSetEnt);
+
+        Map.Entry<String, Employee> result = newDepartmentService.identifyEmployeeWithMinZP(depId);
+
+        assertEquals(500, result.getValue().getSalary());
+        assertEquals("GU", result.getKey());
+        assertEquals("Gena", result.getValue().getName());
+
+        when(employeeService.allEmployees()).thenReturn(null);
+
+        assertThrows(NullPointerException.class, () -> newDepartmentService.identifyEmployeeWithMinZP(depId));
     }
 
     @Test
     void allEmployeesByDepartment() {
+
+        when(employeeService.allEmployees()).thenReturn(mockEmplSetEnt);
+
+        Map<Integer, List<Employee>> result = newDepartmentService.allEmployeesByDepartment();
+
+        assertEquals(2, result.size());
+        assertEquals(2, result.get(1).size());
+        assertEquals(2, result.get(2).size());
+
+        List<Employee> department2Employees = result.get(2);
+        assertEquals("Dunya", department2Employees.get(1).getName());
+        assertEquals("Marfa", department2Employees.get(0).getName());
+
+        when(employeeService.allEmployees()).thenReturn(null);
+
+        assertThrows(NullPointerException.class, () -> newDepartmentService.allEmployeesByDepartment());
     }
 }

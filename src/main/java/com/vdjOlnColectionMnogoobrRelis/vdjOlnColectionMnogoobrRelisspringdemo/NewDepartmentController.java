@@ -13,11 +13,13 @@ public class NewDepartmentController {
     public NewDepartmentController(NewDepartmentService newDepartmentService) {
         this.newDepartmentService = newDepartmentService;
     }
-@GetMapping("/{id}/employees")
+
+    @GetMapping("/{id}/employees")
     public Map<String, Employee> allEmployeesOfDepartment(@PathVariable("id") int departID) {
         return newDepartmentService.allEmployeesOfDepartment(departID);
     }
-@GetMapping("/{id}/salary/sum")
+
+    @GetMapping("/{id}/salary/sum")
     public int returnsSumOfDepartmentSalary(@PathVariable("id") int departID) {
         return newDepartmentService.returnsSumOfDepartmentSalary(departID);
     }
