@@ -14,9 +14,7 @@ public class EmployeeService {
 
     public Set<Map.Entry<String, Employee>> checkWords(String name, String secondName, int department, int salary) throws BadRequestException {
         if (StringUtils.isAlpha(name)&&StringUtils.isAlpha(secondName)){
-//            StringUtils.capitalize(name);
-//            StringUtils.capitalize(secondName);
-           return employAdd(StringUtils.capitalize(name), StringUtils.capitalize(secondName), department, salary);
+            return employAdd(StringUtils.capitalize(name), StringUtils.capitalize(secondName), department, salary);
         } else {
             throw new BadRequestException("Есть не только буквы");}
     }
@@ -27,7 +25,7 @@ public class EmployeeService {
             if (employees.containsValue(employee)) {
                 throw new EmployeeAlreadyAddedException("EmployeeAlreadyAddedException");
             } else {
-                employees.put((String.valueOf(name.charAt(0)) + String.valueOf(secondName.charAt(0))), employee);
+                employees.put((String.valueOf(name.charAt(0)) + secondName.charAt(0)), employee);
                 return employees.entrySet();
             }
         } else {
@@ -38,7 +36,7 @@ public class EmployeeService {
     public Set<Map.Entry<String, Employee>> employRem(String name, String secondName, int department, int salary) {
         Employee employee = new Employee(name, secondName, department, salary);
         if (employees.containsValue(employee)) {
-            employees.remove((String.valueOf(name.charAt(0)) + String.valueOf(secondName.charAt(0))), employee);
+            employees.remove((name.charAt(0) + String.valueOf(secondName.charAt(0))), employee);
             return employees.entrySet();
         } else {
             throw new EmployeeNotFoundException();
@@ -47,8 +45,8 @@ public class EmployeeService {
 
     public Employee employFind(String name, String secondName, int department, int salary) {
         Employee employee = new Employee(name, secondName, department, salary);
-        if (employees.containsValue(employee) && employees.containsKey(String.valueOf(name.charAt(0)) + String.valueOf(secondName.charAt(0)))) {
-            return employees.get(String.valueOf(name.charAt(0)) + String.valueOf(secondName.charAt(0)));
+        if (employees.containsValue(employee) && employees.containsKey(name.charAt(0) + String.valueOf(secondName.charAt(0)))) {
+            return employees.get(String.valueOf(name.charAt(0)) + secondName.charAt(0));
         } else {
             throw new EmployeeNotFoundException();
         }
